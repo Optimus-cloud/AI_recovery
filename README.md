@@ -1,22 +1,28 @@
- RazorResolve — AI Revenue Recovery Agent
+# RazorResolve — AI Revenue Recovery Agent
 
-> Recover the revenue where intervention actually matters.
+> **Recover the revenue where intervention actually matters.**
 
-RazorResolve is an AI Revenue Recovery Agent built for the Razorpay AI Buildathon — AI Revenue Recovery Track.
+RazorResolve is an **AI Revenue Recovery Agent** built for the **Razorpay AI Buildathon — AI Revenue Recovery Track**.
 
 Revenue recovery is not just about finding customers who haven't paid. The harder question is:
 
-> Where can an intervention actually change the outcome?
+> **Where can an intervention actually change the outcome?**
 
 RazorResolve investigates payment and receivables risk, evaluates possible recovery actions, estimates their expected incremental value, prioritizes the best opportunities, operates within merchant-defined policies, and measures the resulting recovery.
 
 The goal is simple:
 
-Don't chase everyone. Make the fewest, smartest interventions that create the most incremental revenue.
+**Don't chase everyone. Make the fewest, smartest interventions that create the most incremental revenue.**
 
 ---
 
-The Problem
+## 🏛️ System Architecture
+
+![RazorResolve Architecture Diagram](./razorresolve_architecture.jpg)
+
+---
+
+## The Problem
 
 Revenue can slip away for many reasons:
 
@@ -42,11 +48,11 @@ In that case, the intervention may add little value while consuming operational 
 
 So the real revenue recovery problem is not:
 
-> Who hasn't paid?
+> *"Who hasn't paid?"*
 
 It is:
 
-> "Where can our intervention actually make a difference?"
+> *"Where can our intervention actually make a difference?"*
 
 ---
 
@@ -90,18 +96,18 @@ Hope they pay                             Understand why it happened
 
 The key idea is:
 
-Revenue recovery shouldn't be about contacting the most customers. It should be about making the fewest, smartest interventions that create the most incremental revenue.
+**Revenue recovery shouldn't be about contacting the most customers. It should be about making the fewest, smartest interventions that create the most incremental revenue.**
 
 ---
 
- How RazorResolve Works
+## How RazorResolve Works
 
 RazorResolve is one revenue recovery agent equipped with investigation, scoring, policy, execution, and learning tools.
 
- 1. Observe
+### 1. Observe
 The agent scans payment and receivables data to identify potential revenue leakage.
 
- 2. Investigate
+### 2. Investigate
 Instead of treating every unpaid transaction the same, the agent gathers context such as:
 - Payment failure history
 - Invoice status
@@ -111,7 +117,7 @@ Instead of treating every unpaid transaction the same, the agent gathers context
 - Refunds and adjustments
 - Previous intervention outcomes
 
- 3. Generate Candidate Actions
+### 3. Generate Candidate Actions
 Depending on the situation, the agent can consider actions such as:
 - `DO_NOTHING`
 - `RETRY_PAYMENT`
@@ -122,43 +128,43 @@ Depending on the situation, the agent can consider actions such as:
 - `INVESTIGATE_UNDERPAYMENT`
 - `ESCALATE_TO_HUMAN`
 
- 4. Estimate Outcome
+### 4. Estimate Outcome
 The agent estimates the likelihood of success for different interventions and compares them with the natural payment probability.
 
- 5. Calculate Expected Incremental Recovery
+### 5. Calculate Expected Incremental Recovery
 The agent estimates how much additional recovery an intervention could create compared with doing nothing.
 
- 6. Prioritize
+### 6. Prioritize
 When intervention capacity is limited, opportunities are ranked according to expected incremental value. This allows the system to spend recovery effort where it has the highest expected impact.
 
- 7. Apply Merchant Policies
+### 7. Apply Merchant Policies
 Before execution, the selected action is checked against merchant-defined policies and safety boundaries. High-value, low-confidence, or sensitive situations can require human approval.
 
- 8. Execute
+### 8. Execute
 The selected recovery action is executed inside the simulated environment.
 
- 9. Measure
+### 9. Measure
 The outcome is recorded in the Recovery Ledger.
 
- 10. Learn
+### 10. Learn
 Historical intervention outcomes are used as feedback for future decisions.
 
 ---
 
- # Revenue Recovery Scenarios
+## Revenue Recovery Scenarios
 
 RazorResolve currently handles four major revenue leakage situations:
 
-# Failed Payments
+### Failed Payments
 Investigates payment failures and determines whether retrying, sending a payment link, reminding the customer, or taking another action is most appropriate.
 
-# Overdue Payments
+### Overdue Payments
 Prioritizes overdue receivables based on their expected recovery value rather than simply sorting by outstanding amount.
 
-# Broken Promises-to-Pay
+### Broken Promises-to-Pay
 Tracks customers who committed to paying and compares their current behavior with their historical promise reliability.
 
-# Underpayments
+### Underpayments
 Investigates payment discrepancies before treating them as recoverable revenue.
 
 The agent can check for:
@@ -415,6 +421,7 @@ AI_recovery/
 ├── README.md
 ├── VALIDATION.md
 ├── .gitignore
+├── razorresolve_architecture.jpg
 │
 ├── backend/
 │   ├── .env.example
@@ -602,7 +609,3 @@ The core idea can be summarized in one question:
 > **Instead of asking "Who should we chase?", can an AI agent determine "Where can our intervention actually create additional revenue?"**
 
 That's the problem RazorResolve is built to solve.
-
-
-
-
